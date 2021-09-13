@@ -1,0 +1,9 @@
+#!/bin/sh
+
+WHITE=/opt/white_ip.sh
+[ "$INTERFACE" = "wan" ] && {
+	[ "$ACTION" = "ifup" ] && {
+		$WHITE >> /opt/white.log
+	}
+}
+
