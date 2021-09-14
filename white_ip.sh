@@ -2,6 +2,7 @@
 #Подсеть и маска
 net_addr="100.64.0.0"
 net_mask="10"
+wan_iface="pppoe-wan"
 
 #Преобразование IP адреса в число
 ip2int ()
@@ -19,7 +20,7 @@ start_int=`ip2int $net_addr`
 (( end_int = start_int + 2 ** ( 32 - net_mask ) - 1 ))
 
 #Получение адреса wan интерфейса, при необходимости замените на свой вариант
-ip=$(ip -f inet -o addr show pppoe-wan|cut -d\  -f 7 | cut -d/ -f 1)
+ip=$(ip -f inet -o addr show $wan_iface | cut -d\  -f 7 | cut -d/ -f 1)
 
 ip_int=`ip2int $ip`
 echo `date` Current IP is $ip "("$ip_int")"
